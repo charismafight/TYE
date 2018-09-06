@@ -63,12 +63,22 @@ footer p {
     margin-bottom: 40px;
 }
 
+.page-title > span {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
 .page-title > span:after {
     position: absolute;
-    left: calc(50% - 20px);
+    left: calc(50% - 90px);
     bottom: 0;
-    width: 40px;
+    width: 175px;
     height: 1px;
     background: #ff3530;
     content: "";
+}
+
+*, :after, :before {
+    box-sizing: border-box;
 }
