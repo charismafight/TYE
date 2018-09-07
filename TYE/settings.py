@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'TYE.apps.TYEConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -99,15 +100,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Asia/Shanghai'
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'zh-Hans'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+FILE_UPLOAD_PERMISSIONS = 0o644
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
