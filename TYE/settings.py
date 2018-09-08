@@ -24,7 +24,7 @@ SECRET_KEY = 'dmckoc37t)wusz*8%g%olmyc+c$pt^rh4jj!x%wvi(sxc2l3+o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -116,4 +116,7 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join('static'),)
+MEDIA_URL = '/data/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "data")
+
+STATICFILES_DIRS = (os.path.join('static'), os.path.join(BASE_DIR, MEDIA_URL), MEDIA_ROOT)
