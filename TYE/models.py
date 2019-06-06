@@ -8,7 +8,10 @@ class Archive(models.Model):
     votes = models.IntegerField('投票数', default=0)
     file = models.FileField('文件', default=None)
     pub_date = models.DateTimeField('发布时间', default=datetime.now())
-    days_of_born = datetime(year=2018, month=2, day=8) - pub_date.time
+    days_of_born = datetime(year=2018, month=2, day=8)
+
+    def days_of_born(self):
+        return self.pub_date.strftime('%Y')
 
     def __str__(self):
         return self.title
