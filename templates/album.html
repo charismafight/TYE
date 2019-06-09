@@ -7,12 +7,13 @@
             {% if archives %}
                 {% for a in archives %}
                     <div class="card">
-                        <a href="{% get_media_prefix %}{{ a.file }}" title="{{ a.title }}" class="thickbox"><img src="{% get_media_prefix %}{{ a.file }}"
-                                                                                                                 alt="{{ a.title }}" class="pic-view"
-                                                                                                                 style="height: auto; width: 100%;margin: 0 auto;"></a>
+                        <a href="{% get_media_prefix %}{{ a.file }}" title="{{ a.title }}" class="thickbox"><img
+                                src="{% get_media_prefix %}{{ a.file }}"
+                                alt="{{ a.title }}" class="pic-view"
+                                style="height: auto; width: 100%;margin: 0 auto;"></a>
                         {#                        <img src="{% get_media_prefix %}{{ a.file }}" alt="{{ a.title }}" class="pic-view" style="height: auto; width: 100%;margin: 0 auto;">#}
                         <p class="card-text">{{ a.description }}</p>
-                        <p class="card-text">{% a.pub_date-1 %}</p>
+                        <p class="card-text">{{ a.pub_date }}</p>
                     </div>
                 {% endfor %}
             {% endif %}
