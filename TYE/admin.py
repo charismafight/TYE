@@ -9,4 +9,4 @@ class ArchiveAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
-admin.site.register([Archive])
+admin.site.register(Archive, ArchiveAdmin)
