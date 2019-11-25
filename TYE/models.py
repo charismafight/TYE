@@ -1,7 +1,13 @@
+import os
+
 from django.db import models
 from datetime import datetime, timezone, timedelta
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill, Transpose, SmartResize
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from imagekit.processors import ResizeToFill, Transpose, SmartResize, Thumbnail
+
+from TYE.image_tools import rotate_image
 
 
 class Archive(models.Model):
@@ -9,13 +15,11 @@ class Archive(models.Model):
     description = models.TextField('描述', max_length=2000, null=True, blank=True)
     votes = models.IntegerField('投票数', default=0, editable=False)
     file = models.FileField('文件', default=None, null=True, blank=True)
-    img = models.ImageField('图片', null=True)
-    img_thumbnail = ImageSpecField(
-        source='img',
-        processors=[Transpose(), SmartResize(200, 200)],
-        format='JPEG',
-        options={'quality': 75}
-    )
+    img = models.ImageField('照片', upload_to='img', max_length=255, blank=True, null=True)
+    img_thumbnail = ImageSpecField(source='img',
+                                   processors=[ResizeToFill(100, 50)],
+                                   format='JPEG',
+                                   options={'quality': 60})
     pub_date = models.DateTimeField('发布时间', default=datetime.now())
     days_of_born = models.IntegerField('出生天数', editable=False)
 
@@ -26,3 +30,11 @@ class Archive(models.Model):
 
     def __str__(self):
         return self.title
+
+
+@receiver(post_save, sender=Archive, dispatch_uid="update_image_archive")
+def update_time(sender, instance, **kwargs):
+    if instance.image:
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        fullpath = BASE_DIR + instance.image.url
+        rotate_image(fullpath)
