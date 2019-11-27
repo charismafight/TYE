@@ -34,7 +34,7 @@ class Archive(models.Model):
 
 @receiver(post_save, sender=Archive, dispatch_uid="update_image_archive")
 def update_time(sender, instance, **kwargs):
-    if instance.image:
+    if instance.img:
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        fullpath = BASE_DIR + instance.image.url
+        fullpath = BASE_DIR + instance.img.url
         rotate_image(fullpath)
