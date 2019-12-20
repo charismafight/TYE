@@ -20,6 +20,8 @@ from django.urls import path
 from . import views
 from django.views.static import serve
 from . import settings
+from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.views import serve
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
