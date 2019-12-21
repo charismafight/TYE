@@ -5,5 +5,6 @@ from .models import *
 
 def index(request):
     template = loader.get_template('index.html')
-    context = {'archives': Archive.objects.all()}
+    context = {'archives': Archive.objects.all(), 'videos': Video.objects.all()}
+
     return HttpResponse(template.render(context, request))

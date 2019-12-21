@@ -1,0 +1,18 @@
+{% load staticfiles %}
+{% load static %}
+<script src="{% static 'thickbox.js' %}"></script>
+<div class="album text-muted">
+    <div class="container">
+        <div class="row">
+            {% if videos %}
+                {% for a in videos %}
+                    <div class="videoDiv">
+                        <video src="{% get_media_prefix %}{{ a.file }}" controls="controls" class="video"></video>
+                        <p class="card-text">{{ a.description }}</p>
+                        <p class="card-text">{{ a.pub_date }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
