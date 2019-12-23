@@ -13,3 +13,18 @@ function selectSection(a) {
         $("#divVideo").show();
     }
 }
+
+$(function () {
+    //video play
+    $('video').click(function () {
+        if ($(this).hasClass('pause')) {
+            $(this).trigger("play");
+            $(this).removeClass('pause');
+            $(this).addClass('play');
+        } else {
+            $(this).trigger("pause");
+            $(this).removeClass('play');
+            $(this).addClass('pause');
+        }
+    });
+});
