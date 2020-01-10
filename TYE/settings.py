@@ -115,11 +115,7 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-STATIC_ROOT = ''
 STATIC_URL = '/static/'
 MEDIA_URL = '/data/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, "data")
-IMAGE_URL = '/images/'
-IMAGE_ROOT = os.path.join(BASE_DIR, "images")
-
-STATICFILES_DIRS = (os.path.join('static'), os.path.join(BASE_DIR, MEDIA_URL), MEDIA_ROOT)
