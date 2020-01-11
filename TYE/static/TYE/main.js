@@ -9,6 +9,9 @@ function selectSection(a) {
 
     if ($(a).attr("id") == "aPic") {
         $("#divPic").show();
+        //暂停播放视频
+        $('video').trigger("pause");
+        $('video').removeClass('play');
     } else {
         $("#divVideo").show();
     }

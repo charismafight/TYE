@@ -1,6 +1,7 @@
 import os
 
 from django.db import models
+from django.contrib.auth.models import User
 from datetime import datetime, timezone, timedelta
 from imagekit.models import ImageSpecField
 from django.db.models.signals import post_save
@@ -10,11 +11,15 @@ from imagekit.processors import ResizeToFill, Transpose, SmartResize, Thumbnail
 from TYE.image_tools import rotate_image
 
 
+class UserProfile(User):
+    cname = models.CharField("中文名称", max_length=30)
+
+
 class Archive(models.Model):
     title = models.TextField('标题', max_length=100)
     description = models.TextField('描述', max_length=2000, null=True, blank=True)
     votes = models.IntegerField('投票数', default=0, editable=False)
-    file = models.FileField('文件', default=None, null=True, blank=True)
+    file = models.FileField('文件', upload_to='video', default=None, null=True, blank=True)
     img = models.ImageField('照片', upload_to='img', max_length=255, blank=True, null=True)
     img_thumbnail = ImageSpecField(source='img',
                                    processors=[ResizeToFill(100, 50)],

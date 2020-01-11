@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'suit',
     'TYE.apps.TYEConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -98,6 +99,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DATETIME_FORMAT = 'Y-m-d H:i:s'
+DATE_FORMAT = 'Y-m-d'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -107,15 +111,31 @@ LANGUAGE_CODE = 'zh-Hans'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
 FILE_UPLOAD_PERMISSIONS = 0o644
 
+SUIT_CONFIG = {
+    'ADMIN_NAME': '李黎',
+    'MENU': ({'label': '用户',
+              'app': '用户',
+              'models': ('UserProfile',)},
+             ),
+    # 每一个字典表示左侧菜单的一栏
+    # label表示name，app表示上边的install的app，models表示用了哪些models
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 MEDIA_URL = '/data/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, "data")
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, STATIC_URL),
+    os.path.join(BASE_DIR, MEDIA_URL),
+)
